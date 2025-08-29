@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>प्रोफाइल - प्रियांशु शर्मा | उत्तर प्रदेश सरकार</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, 'Nirmala UI', sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f8f8"/><path d="M0 0L100 100" stroke="%23e0e0e0" stroke-width="1"/><path d="M100 0L0 100" stroke="%23e0e0e0" stroke-width="1"/></svg>');
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        .top-bar {
+            background: linear-gradient(to right, #138808, #0c4c0c);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 2px solid #ff9933;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background: white;
+            color: #333;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 70px;
+            width: auto;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .logo-main {
+            font-size: 24px;
+            font-weight: bold;
+            color: #138808;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-sub {
+            font-size: 14px;
+            color: #333;
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+        
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .header-links a {
+            color: #138808;
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .header-links i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        /* User Info */
+        .user-info {
+            background: #e8f5e9;
+            padding: 10px 20px;
+            border-bottom: 1px solid #c8e6c9;
+        }
+        
+        .user-info-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .welcome-text {
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        
+        .user-role {
+            background: #0c4c0c;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        
+        /* Navigation */
+        .navigation {
+            background: linear-gradient(to right, #0c4c0c, #138808);
+            padding: 12px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        /* Profile Section */
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Profile Card */
+        .profile-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            border-top: 4px solid #138808;
+            border-bottom: 4px solid #ff9933;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #0c4c0c;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #138808, #0c4c0c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+        
+        .profile-name {
+            color: #0c4c0c;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .profile-designation {
+            color: #138808;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #138808;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .detail-content h4 {
+            color: #0c4c0c;
+            margin-bottom: 5px;
+        }
+        
+        .detail-content p {
+            color: #555;
+        }
+        
+        /* Info Card */
+        .info-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 4px solid #138808;
+        }
+        
+        .info-card h2 {
+            color: #0c4c0c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f6ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #138808;
+        }
+        
+        .info-item h3 {
+            color: #0c4c0c;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .info-item p {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(to right, #0c4c0c, #138808);
+            color: white;
+            padding: 30px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 8px;
+            color: #ffcc00;
+        }
+        
+        .footer-section p, .footer-section a {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+        
+        .footer-section a:hover {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .header-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .user-info-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .action-btn {
+            background: linear-gradient(to right, #0c4c0c, #138808);
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            background: linear-gradient(to right, #083a08, #0c6e0c);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* QR Code */
+        .qr-code {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .qr-code img {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="contact">
+                <i class="fas fa-phone"></i> हेल्पलाइन: 1800-180-5145
+            </div>
+            <div class="email">
+                <i class="fas fa-envelope"></i> support@upgov.gov.in
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="Seal_of_Uttar_Pradesh.svg.png" alt="Uttar Pradesh Government Logo" class="logo">
+                <div class="logo-text">
+                    <span class="logo-main">उत्तर प्रदेश सरकार</span>
+                    <span class="logo-sub">Uttar Pradesh Government</span>
+                    <span class="logo-sub">कर्मचारी डाटा पोर्टल</span>
+                </div>
+            </div>
+            <div class="header-links">
+                <a href="#"><i class="fas fa-home"></i> मुखपृष्ठ</a>
+                <a href="#"><i class="fas fa-info-circle"></i> जानकारी</a>
+                <a href="#"><i class="fas fa-question-circle"></i> सहायता</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- User Info Bar -->
+    <div class="user-info">
+        <div class="user-info-content">
+            <div class="welcome-text">स्वागत है, प्रियांशु शर्मा</div>
+            <div class="user-role">डाटा सेंटर अधिकारी | ग्रुप बी</div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="#">मुखपृष्ठ</a></li>
+                <li><a href="#">प्रोफाइल</a></li>
+                <li><a href="#">दस्तावेज</a></li>
+                <li><a href="#">वेतन विवरण</a></li>
+                <li><a href="#">सेटिंग्स</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="profile-section">
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div class="profile-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h1 class="profile-name">प्रियांशु शर्मा</h1>
+                <p class="profile-designation">डाटा सेंटर अधिकारी</p>
+                
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>कर्मचारी कोड</h4>
+                            <p>UP/GOV/144946</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>ग्रुप</h4>
+                            <p>ग्रुप बी</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>बैच नंबर</h4>
+                            <p>144946</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h4>कमरा नंबर</h4>
+                            <p>16</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="qr-code">
+                    <img src="qrcode (2).jpeg" alt="Employee QR Code">
+                    <p>कर्मचारी आईडी क्यूआर कोड</p>
+                </div>
+            </div>
+            
+            <!-- Information Section -->
+            <div>
+                <!-- Personal Info Card -->
+                <div class="info-card">
+                    <h2><i class="fas fa-user-circle"></i> व्यक्तिगत जानकारी</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h3>पूरा नाम</h3>
+                            <p>प्रियांशु शर्मा</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>पदनाम</h3>
+                            <p>डाटा सेंटर अधिकारी</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>विभाग</h3>
+                            <p>डाटा सेंटर (प्रमुख सचिव के अधीन)</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>कार्यालय</h3>
+                            <p>विधान सभा (परिषद), लखनऊ</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>कर्मचारी प्रकार</h3>
+                            <p>सरकारी कर्मचारी</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>कार्यग्रहण तिथि</h3>
+                            <p>31 जुलाई, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Info Card -->
+                <div class="info-card">
+                    <h2><i class="fas fa-address-book"></i> संपर्क जानकारी</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h3>कार्यालय पता</h3>
+                            <p>कमरा नंबर 16, विधान सभा, लखनऊ, उत्तर प्रदेश</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>ईमेल</h3>
+                            <p>priyanshu.sharma@upgov.gov.in</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>कार्यालय फोन</h3>
+                            <p>+91-522-2234567</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>मोबाइल नंबर</h3>
+                            <p>+91-8881110233</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="action-buttons">
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-download"></i>
+                        प्रोफाइल डाउनलोड करें
+                    </a>
+                    
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-print"></i>
+                        प्रिंट प्रोफाइल
+                    </a>
+                    
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-envelope"></i>
+                        संपर्क करें
+                    </a>
+                    
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-edit"></i>
+                        प्रोफाइल संपादित करें
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>त्वरित लिंक</h3>
+                <a href="#">मुखपृष्ठ</a>
+                <a href="#">प्रोफाइल</a>
+                <a href="#">दस्तावेज</a>
+                <a href="#">वेतन विवरण</a>
+                <a href="#">सेटिंग्स</a>
+            </div>
+            <div class="footer-section">
+                <h3>महत्वपूर्ण पोर्टल</h3>
+                <a href="#">उप्र मुख्यमंत्री कार्यालय</a>
+                <a href="#">उप्र जिला पोर्टल</a>
+                <a href="#">उप्र पुलिस</a>
+                <a href="#">उप्र पर्यटन</a>
+            </div>
+            <div class="footer-section">
+                <h3>हमसे संपर्क करें</h3>
+                <p><i class="fas fa-phone"></i> हेल्पलाइन: 1800-180-5145</p>
+                <p><i class="fas fa-envelope"></i> ईमेल: support@upgov.gov.in</p>
+                <p><i class="fas fa-map-marker-alt"></i> पता: विधान सभा, लखनऊ, उत्तर प्रदेश</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 उत्तर प्रदेश सरकार कर्मचारी डाटा पोर्टल। सर्वाधिकार सुरक्षित।</p>
+            <p>राष्ट्रीय सूचना विज्ञान केंद्र, उत्तर प्रदेश द्वारा डिजाइन और विकसित</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to update the current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const dateTimeStr = now.toLocaleDateString('hi-IN', options);
+            document.getElementById('datetime').textContent = dateTimeStr;
+        }
+        
+        // Update date time on load and set interval to update every minute
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
+        });
+    </script>
+</body>
+</html>
